@@ -1,0 +1,56 @@
+cabal-version:      3.0
+name:               specup
+version:            0.0.0.1
+
+author: Daniel Rolls
+maintainer: daniel.rolls.27@googlemail.com
+copyright: (c) 2024 Daniel Rolls
+
+license: GPL-2.0-only
+license-files: LICENSE
+
+source-repository head
+    type: git
+
+common deps
+    default-language: GHC2021
+    build-depends:
+        base >=4.16 && <4.20,
+        text >=1.2.5.0 && <2.2
+
+    default-extensions:
+        LambdaCase
+        OverloadedStrings
+
+executable specup
+    import: deps
+    main-is: Main.hs
+    build-depends:
+        optparse-applicative,
+        bytestring,
+        specup >=0
+    hs-source-dirs: app
+
+library
+    import: deps
+    exposed-modules:
+        SpecUp
+    hs-source-dirs: src
+    build-depends:
+        yaml >= 0.11.11.1 && <0.12,
+        stache >=2.3.3 && < 2.4,
+        megaparsec >=9.2.2 && < 9.3,
+        extra,
+        bytestring
+
+test-suite specup-test
+    import: deps
+    type: exitcode-stdio-1.0
+    main-is: Spec.hs
+    hs-source-dirs: test
+    ghc-options: -threaded -rtsopts -with-rtsopts=-N
+    build-depends:
+        hspec >=2.9.7 && <2.12,
+        hspec-core >=2.9.7 && <2.12,
+        specup >=0
+
