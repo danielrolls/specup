@@ -6,7 +6,7 @@
   outputs = { self, nixpkgs }:
 
     let pkgs = nixpkgs.legacyPackages.x86_64-linux;
-    in {
+    in rec {
 
       packages.x86_64-linux.default = pkgs.haskell.lib.overrideCabal (
         pkgs.haskellPackages.developPackage {
@@ -21,5 +21,7 @@
       ) {
         enableSeparateDataOutput = false;
       };
+
+      apps.x86_64-linux.default = { type = "app"; program = "${packages.x86_64-linux.default}/bin/specup"; };
     };
 }
