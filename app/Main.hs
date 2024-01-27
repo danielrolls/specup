@@ -29,7 +29,7 @@ argParser = Args
         <> help ("File to read the mustache template from. Defaults to " <> defaultTemplateFile)
         )
   where defaultSpecFile = "spec.yaml"
-        defaultTemplateFile = "template.m"
+        defaultTemplateFile = "markup.mustache"
 
 
 run :: Args -> IO ()
