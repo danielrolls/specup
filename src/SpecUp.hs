@@ -1,3 +1,4 @@
+-- |Manage the application of templates to custom yaml
 module SpecUp(invokeTemplateOnSpec) where
 
 import Data.Text (Text)
@@ -8,11 +9,22 @@ import Text.Mustache (compileMustacheText, renderMustache)
 import qualified Data.Text.Lazy as LazyText
 import Data.Either.Extra (mapLeft)
 
-invokeTemplateOnSpec :: Text -> ByteString -> Either String LazyText.Text
+-- |Apply a given template to the supplied yaml
+invokeTemplateOnSpec :: Text ->
+                        ByteString ->
+                        Either String LazyText.Text
 invokeTemplateOnSpec templ spec =
-  let compiledTemplate = mapLeft (("Texplate compilation failed with the following error: " <>) . errorBundlePretty)
-                                 $ compileMustacheText "base template" templ
-      spec' = mapLeft (("yaml decoding failed with the following error: " <>) . prettyPrintParseException)
-                      $ decodeEither' spec
-  in renderMustache <$> compiledTemplate <*> spec'
+  renderMustache <$> compiledTemplate <*> compiledSpec
+  where compiledTemplate = templateCompilationErrorHandler
+                           $ compileMustacheText "base template" templ
+        compiledSpec = yamlDecodingErrorHandler
+                       $ decodeEither' spec
+        yamlDecodingErrorHandler = mapLeft
+          ( ("yaml decoding failed with the following error: " <>)
+          . prettyPrintParseException
+          )
+        templateCompilationErrorHandler = mapLeft
+          ( ("Texplate compilation failed with the following error: " <>)
+          . errorBundlePretty
+          )
 
