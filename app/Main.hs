@@ -1,15 +1,18 @@
 module Main where
 
 import Prelude hiding (readFile)
+
 import Data.ByteString.Char8 (readFile)
-import SpecUp (invokeTemplateOnSpec)
-import Options.Applicative (Parser, execParser, info, helper, fullDesc, long, short, metavar, value, help, strOption, progDesc, (<**>), option, auto)
-import qualified Data.Text.Lazy.IO as LazyText
 import qualified Data.Text.IO as TextIO
+import qualified Data.Text.Lazy.IO as LazyText
+import Options.Applicative (Parser, execParser, info, helper, fullDesc, long, short, metavar, value, help, strOption, progDesc, (<**>), option, auto)
+import SpecUp (invokeTemplateOnSpec)
+import System.Exit (exitFailure)
+import System.IO (hPutStr, stderr)
 
 data Args = Args {
-  specFile :: String
-, template :: String
+  specFile :: !String
+, template :: !String
 }
 
 argParser :: Parser Args
@@ -36,7 +39,7 @@ run :: Args -> IO ()
 run args = do
   spec <- readFile $ specFile args
   template <- TextIO.readFile $ template args
-  either Prelude.putStrLn
+  either (\s -> hPutStr stderr s >> exitFailure)
          LazyText.putStrLn
          $ invokeTemplateOnSpec template spec
 
