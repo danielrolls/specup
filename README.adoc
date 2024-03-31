@@ -4,7 +4,10 @@ This tool can be used to generate a markup file from your own arbitrary yaml fil
 
 Expect the interface to move around a bit.
 
-To try the tool out, install https://nixos.org/download[Nix] and run `nix run github:danielrolls/specup -- --help`.
+To try the tool out, install https://nixos.org/download[Nix] and run
+```
+nix run nixpkgs#specup -- --help
+```
 
 == An example
 Imagine you need to publish a list of animals. Rather than pick a format and muck about reformatting just put them into yaml and then write a template. For example, put this into `animal.yaml`:
