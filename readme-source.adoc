@@ -13,6 +13,7 @@ nix run nixpkgs#specup -- --help
 == An example
 Imagine you need to publish a list of animals. Rather than pick a format and muck about reformatting just put them into yaml and then write a template. For example, put this into `animal.yaml`:
 ```yaml
+include::test/resources/example-from-readme/animal.yaml
 - animal: Dog
   class: mammal
 - animal: Crocodile
@@ -37,4 +38,3 @@ specup -s animal.yaml -t template.m
 Now you can add to the yaml and modify or add templates independently. If you want to modify the yaml just use https://github.com/mikefarah/yq[yq].
 
 As said above, you can do the same by writing all this in code but usually we don't because it's not worth the time to set up. Also, for small projects it's better not to have to maintain a codebase with library dependencies.
-
