@@ -1,3 +1,4 @@
+:source-highlighter: highlight.js
 = SpecUp
 
 This tool can be used to generate a markup file from your own arbitrary yaml file. Just provide the yaml and a template (in mustache format) and the tool outputs the result of applying the template to yaml. This can be quicker and easier than starting a project in your favourite language and easier to maintain.
