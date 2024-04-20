@@ -1,0 +1,39 @@
+:source-highlighter: highlight.js
+= SpecUp
+
+This tool can be used to generate a markup file from your own arbitrary yaml file. Just provide the yaml and a template (in mustache format) and the tool outputs the result of applying the template to yaml. This can be quicker and easier than starting a project in your favourite language and easier to maintain.
+
+Expect the interface to move around a bit.
+
+To try the tool out, install https://nixos.org/download[Nix] and run
+```
+nix run nixpkgs#specup -- --help
+```
+
+== An example
+Imagine you need to publish a list of animals. Rather than pick a format and muck about reformatting just put them into yaml and then write a template. For example, put this into `animal.yaml`:
+```yaml
+- animal: Dog
+  class: mammal
+- animal: Crocodile
+  class: reptile
+```
+
+and this into `template.m` to list them in, say, markdown:
+```
+{{# . }}
+# {{{ animal }}}
+
+Animal class: {{{ class }}}
+
+{{/ . }}
+```
+
+To apply the template to the yaml file run
+```
+specup -s animal.yaml -t template.m
+```
+
+Now you can add to the yaml and modify or add templates independently. If you want to modify the yaml just use https://github.com/mikefarah/yq[yq].
+
+As said above, you can do the same by writing all this in code but usually we don't because it's not worth the time to set up. Also, for small projects it's better not to have to maintain a codebase with library dependencies.
