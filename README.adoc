@@ -18,10 +18,6 @@ Imagine you need to publish a list of animals. Rather than pick a format and muc
   class: mammal
 - animal: Crocodile
   class: reptile
-- animal: Dog
-  class: mammal
-- animal: Crocodile
-  class: reptile
 ----
 
 and this into `template.m` to list them in, say, markdown:
