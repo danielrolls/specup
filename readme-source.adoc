@@ -37,3 +37,4 @@ specup -s animal.yaml -t template.m
 Now you can add to the yaml and modify or add templates independently. If you want to modify the yaml just use https://github.com/mikefarah/yq[yq].
 
 As said above, you can do the same by writing all this in code but usually we don't because it's not worth the time to set up. Also, for small projects it's better not to have to maintain a codebase with library dependencies.
+
