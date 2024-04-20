@@ -13,6 +13,7 @@ nix run nixpkgs#specup -- --help
 == An example
 Imagine you need to publish a list of animals. Rather than pick a format and muck about reformatting just put them into yaml and then write a template. For example, put this into `animal.yaml`:
 ```yaml
+include::test/resources/example-from-readme/animal.yaml
 - animal: Dog
   class: mammal
 - animal: Crocodile
