@@ -15,20 +15,11 @@ Imagine you need to publish a list of animals. Rather than pick a format and muc
 [,yaml]
 ----
 include::test/resources/example-from-readme/animal.yaml[]
-- animal: Dog
-  class: mammal
-- animal: Crocodile
-  class: reptile
 ----
 
 and this into `template.m` to list them in, say, markdown:
 ```
-{{# . }}
-# {{{ animal }}}
-
-Animal class: {{{ class }}}
-
-{{/ . }}
+include::test/resources/example-from-readme/template.m[]
 ```
 
 To apply the template to the yaml file run
