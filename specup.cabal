@@ -14,9 +14,9 @@ category: Documentation
 extra-doc-files:
     CHANGELOG.md
 extra-source-files:
-    test/resources/*.yaml,
-    test/resources/*.m,
-    test/resources/*.txt
+    test/resources/example-from-readme/*.yaml,
+    test/resources/example-from-readme/*.m,
+    test/resources/example-from-readme/*.txt
 
 source-repository head
     type: git
