@@ -1,6 +1,6 @@
 cabal-version:      3.0
 name:               specup
-version:            0.2.0.2
+version:            0.2.0.3
 
 author: Daniel Rolls
 maintainer: daniel.rolls.27@googlemail.com
@@ -25,7 +25,7 @@ source-repository head
 common deps
     default-language: GHC2021
     build-depends:
-        base >=4.16 && <4.20,
+        base >=4.16 && <4.21,
         bytestring >= 0.11.4 && < 0.13,
         text >=1.2.5.0 && <2.2
 
