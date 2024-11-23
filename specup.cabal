@@ -1,6 +1,6 @@
 cabal-version:      3.0
 name:               specup
-version:            0.2.0.3
+version:            0.2.0.4
 
 author: Daniel Rolls
 maintainer: daniel.rolls.27@googlemail.com
@@ -49,7 +49,7 @@ library
     build-depends:
         yaml >= 0.11.11.1 && <0.12,
         stache >=2.3.3 && < 2.4,
-        megaparsec >=9.2.2 && < 9.7,
+        megaparsec >=9.2.2 && < 9.8,
         extra >= 1.7.13 && < 1.9
 
 test-suite specup-test
